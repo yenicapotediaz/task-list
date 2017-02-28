@@ -24,6 +24,7 @@ func main() {
 func runServer() {
 	fmt.Println("Running server...")
 	http.HandleFunc("/", handler)
+	http.HandleFunc("/additem", addItemHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -41,4 +42,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("can not parse views/main.gtpl " + err.Error())
 	}
 	t.Execute(w, TodoItemsSlice)
+}
+
+func addItemHandler(w http.ResponseWriter, r *http.Request) {
+	log.Print("addItemHandler")
+	t, _ := template.ParseFiles("./views/additem.gtpl")
+	t.Execute(w, t)
 }
