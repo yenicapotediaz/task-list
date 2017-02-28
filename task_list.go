@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 )
 
@@ -27,7 +28,17 @@ func runServer() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
+	captionFormValue := r.PostFormValue("caption")
+	if captionFormValue != "" {
+		fmt.Println("caption:", captionFormValue)
+		newId := len(TodoItemsSlice) + 1
+		p := &TodoItem{Id: newId, Caption: captionFormValue, IsFinished: false}
+		TodoItemsSlice = append(TodoItemsSlice, *p)
+	}
 
-	t, _ := template.ParseFiles("./views/main.gtpl")
+	t, err := template.ParseFiles("./views/main.gtpl")
+	if err != nil {
+		log.Fatal("can not parse views/main.gtpl " + err.Error())
+	}
 	t.Execute(w, TodoItemsSlice)
 }
