@@ -46,6 +46,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func addItemHandler(w http.ResponseWriter, r *http.Request) {
 	log.Print("addItemHandler")
-	t, _ := template.ParseFiles("./views/additem.gtpl")
+	t, _ := template.ParseFiles("./views/additem.html")
 	t.Execute(w, t)
 }
