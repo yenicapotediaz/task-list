@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: task-list
+    labels:
+      app: task-list
+spec:
+  containers:
+    - name: task-list
+      image: quay.io/yenicapote08/task-list:latest
+      ports:
+        - containerPort: 8080
