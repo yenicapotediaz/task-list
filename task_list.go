@@ -7,12 +7,14 @@ import (
 	"net/http"
 )
 
+//TodoItem struct
 type TodoItem struct {
-	Id         int
+	ID         int
 	Caption    string
 	IsFinished bool
 }
 
+//TodoItemsSlice todo object
 var TodoItemsSlice = []TodoItem{}
 
 func main() {
@@ -24,7 +26,6 @@ func main() {
 func runServer() {
 	fmt.Println("Running server...")
 	http.HandleFunc("/", handler)
-	http.HandleFunc("/additem", addItemHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -32,20 +33,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	captionFormValue := r.PostFormValue("caption")
 	if captionFormValue != "" {
 		fmt.Println("caption:", captionFormValue)
-		newId := len(TodoItemsSlice) + 1
-		p := &TodoItem{Id: newId, Caption: captionFormValue, IsFinished: false}
+		newID := len(TodoItemsSlice) + 1
+		p := &TodoItem{ID: newID, Caption: captionFormValue, IsFinished: false}
 		TodoItemsSlice = append(TodoItemsSlice, *p)
 	}
 
-	t, err := template.ParseFiles("./views/main.gtpl")
+	t, err := template.ParseFiles("./views/main.html")
 	if err != nil {
-		log.Fatal("can not parse views/main.gtpl " + err.Error())
+		log.Fatal("can not parse views/main.html " + err.Error())
 	}
 	t.Execute(w, TodoItemsSlice)
-}
-
-func addItemHandler(w http.ResponseWriter, r *http.Request) {
-	log.Print("addItemHandler")
-	t, _ := template.ParseFiles("./views/additem.html")
-	t.Execute(w, t)
 }
