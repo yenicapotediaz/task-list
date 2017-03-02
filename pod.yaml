@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: task-list
-    labels:
-      app: task-list
+  labels:
+    app: task-list
 spec:
   containers:
     - name: task-list
