@@ -38,9 +38,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		TodoItemsSlice = append(TodoItemsSlice, *p)
 	}
 
-	t, err := template.ParseFiles("./views/main.html")
+	t, err := template.ParseFiles("./templates/index.html")
 	if err != nil {
-		log.Fatal("can not parse views/main.html " + err.Error())
+		log.Fatal("can not parse templates/index.html: " + err.Error())
 	}
 	t.Execute(w, TodoItemsSlice)
 }

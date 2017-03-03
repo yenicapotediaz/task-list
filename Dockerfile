@@ -1,7 +1,7 @@
 FROM golang
 
 ADD task_list.go /
-ADD views/* /views/
+ADD templates/* /templates/
 
 RUN go build -o /task_list /task_list.go
 
