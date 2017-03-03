@@ -10,8 +10,8 @@
         <ul>
         {{ range $item := .}}
             <li>
-              <input type="checkbox" id="{{ $item.Id }}" value="{{ $item.IsFinished }}" />
-              <label for="{{ $item.Id }}">{{ $item.Caption }}</label>
+              <input type="checkbox" id="{{ $item.ID }}" value="{{ $item.IsFinished }}" />
+              <label for="{{ $item.ID }}">{{ $item.Caption }}</label>
             </li>
         {{ end }}
         </ul>
