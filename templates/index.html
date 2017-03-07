@@ -10,16 +10,17 @@
         <ul>
         {{ range $item := .}}
             <li>
-              <input type="checkbox" id="{{ $item.ID }}" value="{{ $item.IsFinished }}" />
+              <input type="checkbox" id="{{ $item.ID }}" value="{{ $item.Done }}" />
               <label for="{{ $item.ID }}">{{ $item.Caption }}</label>
             </li>
         {{ end }}
         </ul>
     </div>
 
+
     <h3>Add new task:</h3>
 
-    <form action="/" method="POST">
+    <form action="/" method="GET">
         Caption: <input type="text" name="caption">
         <input type="submit" value="add">
     </form>
