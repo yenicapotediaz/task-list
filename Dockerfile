@@ -1,5 +1,7 @@
 FROM golang
 
+RUN go get github.com/go-sql-driver/mysql
+
 ADD task_list.go /
 ADD templates/* /templates/
 
