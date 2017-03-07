@@ -25,7 +25,7 @@ var db *sql.DB
 
 func init() {
 	var err error
-	db, err = sql.Open("mysql", "root@tcp(a9d7d3790003711e790670a9b77d070e-319954018.us-west-2.elb.amazonaws.com:3306)/list")
+	db, err = sql.Open("mysql", "root@tcp(10.44.108.113:3306)/list")
 	if err != nil {
 		log.Fatal(err)
 	}
